@@ -1,0 +1,36 @@
+<%= form_for(@track) do |f| %>
+  <% if @track.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@track.errors.count, "error") %> prohibited this track from being saved:</h2>
+
+      <ul>
+      <% @track.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :lyrics %><br>
+    <%= f.text_area :lyrics %>
+  </div>
+  <div class="field">
+    <%= f.label :kind %><br>
+    <%= f.text_field :kind %>
+  </div>
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title%>
+  <div class="field">
+    <%= f.select(
+    "album_id",
+    Album.all.sort_by{ |a| a.band.name }
+    .map { |a| ["#{a.band.name}, #{a.name}", a.id] },
+    selected: session[:default_album_id]
+    ) %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

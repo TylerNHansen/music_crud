@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Musicapp</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <ln> <%= link_to 'Home', root_url %></ln>
+<br>
+  <% if logged_in? %>
+    Welcome, <%= current_user.email %>
+    <%= button_to 'Sign Out', logout_url %>
+  <% else %>
+    <%= link_to 'log in', login_url %>
+    <%= link_to 'sign up', new_user_url %>
+  <% end %>
+
+
+<%= yield %>
+
+</body>
+</html>
