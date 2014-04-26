@@ -10,6 +10,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
+    @user = User.find(params[:id])
   end
 
   # GET /users/new
@@ -19,6 +20,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # GET /login
@@ -41,7 +43,7 @@ class UsersController < ApplicationController
 
   def logout
     super
-    redirecet_to root_url
+    redirect_to root_url
   end
 
   # POST /users
@@ -53,6 +55,7 @@ class UsersController < ApplicationController
     respond_to do |format|
       if @user.save
         login!(@user)
+        UserMailer.activate_email(@user).deliver!
         format.html { redirect_to @user, notice: 'User was successfully created.' }
         format.json { render action: 'show', status: :created, location: @user }
       else
@@ -84,6 +87,11 @@ class UsersController < ApplicationController
       format.html { redirect_to root_url }
       format.json { head :no_content }
     end
+  end
+
+  def verify
+    User.activate(params[:activate_token])
+    redirect_to root_url
   end
 
   private

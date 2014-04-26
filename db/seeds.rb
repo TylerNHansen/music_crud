@@ -6,6 +6,15 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
+users = []
+
+10.times do
+  users << User.create(email: Faker::Internet.email, password: 'test')
+end
+
+users << User.create(email: 'test', password: 'test')
+
+
 bands = []
 
 20.times do
@@ -33,3 +42,14 @@ albums.each do |album|
     )
   end
 end
+
+notes = []
+
+tracks.each do |track|
+  3.times do
+    user = users.sample
+    notes << Note.create(user_id: user.id, track_id: track.id,
+    body: Faker::Lorem.paragraphs.join("\n"))
+  end
+end
+

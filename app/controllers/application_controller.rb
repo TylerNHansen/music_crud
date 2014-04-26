@@ -7,12 +7,13 @@ class ApplicationController < ActionController::Base
 
   # must call method after authenticating user
   def login!(user)
+    user.make_session_token!
     session[:session_token] = user.session_token
     @current_user = user
   end
 
   def current_user
-    @current_user ||= User.find_by_session_token(session[:session_token])
+    @current_user ||= User.from_session(session[:session_token])
   end
 
   def logged_in?
@@ -20,7 +21,8 @@ class ApplicationController < ActionController::Base
   end
 
   def logout
-    User.find_by_sesssion_token(session[:session_token]).try(:destroy!)
+    current_user.make_session_token!
+    @current_user = nil
     session[:token] = nil
   end
 

@@ -1,0 +1,23 @@
+# == Schema Information
+#
+# Table name: notes
+#
+#  id         :integer          not null, primary key
+#  body       :text
+#  user_id    :integer
+#  track_id   :integer
+#  created_at :datetime
+#  updated_at :datetime
+#
+
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: MyText
+  user_id: 
+  track_id: 
+
+two:
+  body: MyText
+  user_id: 
+  track_id: 

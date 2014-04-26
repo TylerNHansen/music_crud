@@ -15,6 +15,7 @@ class Album < ActiveRecord::Base
 
   belongs_to :band
   has_many :tracks
+  has_many :albums, through: :band
 
   def band_name
     band.name

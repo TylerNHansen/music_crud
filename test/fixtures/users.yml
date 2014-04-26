@@ -8,6 +8,8 @@
 #  session_token   :string(255)      not null
 #  created_at      :datetime
 #  updated_at      :datetime
+#  activated       :boolean          default(FALSE)
+#  activate_token  :string(255)
 #
 
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html

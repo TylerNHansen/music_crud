@@ -7,6 +7,9 @@ group :development do
   gem 'faker'
 end
 
+gem 'default_value_for'
+gem 'letter_opener'
+
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
 

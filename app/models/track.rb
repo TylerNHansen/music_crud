@@ -16,4 +16,6 @@ class Track < ActiveRecord::Base
 
   belongs_to :album
   has_one :band, through: :album
+  has_many :notes
+  has_many :tracks, through: :album
 end

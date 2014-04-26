@@ -25,7 +25,8 @@
   <div class="field">
     <%= f.select(
     "album_id",
-    Album.all.sort_by{ |a| a.band.name }
+    Album.find(session[:default_album_id]).albums
+    .sort_by{ |a| a.band.name }
     .map { |a| ["#{a.band.name}, #{a.name}", a.id] },
     selected: session[:default_album_id]
     ) %>
